@@ -43,8 +43,16 @@ def cal_inversion(array):
 
 
 def valid_data(size, grid):
+    elements = size * size - 1
     if size != len(grid):
         print ("Problem with puzzle data in " + fd.name)
+        return False
+    for row in grid:
+        for e in row:
+            if not e.is_digit() or int(e) > elements:
+                print ("Invalid element: " + e)
+                return False
+    return True
 
 
 def puzzle_from_fd(fd):
@@ -62,6 +70,7 @@ def puzzle_from_fd(fd):
         print ("------ " + line)
         line = fd.readline()
     if valid_data(size, grid):
-        return size, grid
-    else:
-        print()
+        print ("valid data")
+        #return size, grid
+    print (str(grid))
+    return None, None
