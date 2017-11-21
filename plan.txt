@@ -3,9 +3,25 @@
 Start
 
 read in puzzle.txt document
-    -handel for aligned and not aligned
+    -handle for aligned and not aligned
 
 random puzzle generator
+
+What is f score?
+f score is nothing but the sum of the cost to reach that node and the heuristic value of that node.
+For any give node the f score is defined as:
+f(x)=h(x)+g(x)
+where g(x)  is the cost of that node, h(x) is the calculated heuristic of that node and x is the current node.
+
+What is g score(cost)?
+g score is defined as the sum of g score of the parent node and the cost to travel to that node from it’s parent.
+g(x)=g(x.parent)+cost(x.parent,x)
+
+What is h score(heuristic)?
+Heuristic score is different for each question as explained above heuristic needs to be admissible for each type of problem.
+I’ll not discuss about various heuristics here as this is just to explain general working of A*.
+Now that the explanation is out of the way lets come to the basic algorithm in practice.
+
 
 
 At the end of the search, the program has to provide the following values:
@@ -16,3 +32,5 @@ At the end of the search, the program has to provide the following values:
 ◦ The ordered sequence of states that make up the solution, according to the search
 ◦ The puzzle may be unsolvable, in which case you have to inform the user and exit
 
+https://www.python.org/doc/essays/graphs/
+https://algorithmsinsight.wordpress.com/graph-theory-2/a-star-in-general/implementing-a-star-to-solve-n-puzzle/
