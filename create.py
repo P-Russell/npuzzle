@@ -2,75 +2,58 @@ import math
 import random
 
 
+def shape(a, size):
+    temp = []
+    grid = []
+    i = 0
+    for e in a:
+        if i < size:
+            temp.append(e)
+            i += 1
+        if i == size:
+            grid.append(temp)
+            temp = []
+            i = 0
+    return grid
+
+
 def generate_new(size):
     new = [x for x in range(size * size)]
     random.shuffle(new)
     while not is_solvable(new, size):
         random.shuffle(new)
-    return new
+    return shape(new)
 
 
 def is_solvable(array, p_size):
-    inver = cal_inversion(array)
+    inv = inversion(array)
+    print ('inversion = ' + str(inv))
     if p_size % 2 != 0:
-        return inver % 2 == 0
+        return inv % 2 == 0
     else:
         b_pos = blank_pos_from_bot(array, p_size)
-        if b_pos % 2 == 0 and inver % 2 != 0:
+        print ('b_pos = ' + str(b_pos))
+        if b_pos % 2 == 0 and inv % 2 != 0:
             return True
-        elif b_pos % 2 != 0 and inver % 2 == 0:
+        elif b_pos % 2 != 0 and inv % 2 == 0:
             return True
     return False
 
 
 def blank_pos_from_bot(array, p_size):
-    index = array.index(0) + 1
+    index = array.index('0') + 1
     return p_size - (math.ceil(index / p_size) - 1)
 
 
-def cal_inversion(array):
+def inversion(array):
     length = len(array)
-    inver_count = 0
+    inv_count = 0
     i = 0
     while i < length - 1:
         j = i + 1
         while j < length:
             if array[i] > array[j]:
-                inver_count += 1
+                inv_count += 1
             j += 1
         i += 1
-    return inver_count
-
-
-def valid_data(size, grid):
-    elements = size * size - 1
-    if size != len(grid):
-        print ("Problem with puzzle data in " + fd.name)
-        return False
-    for row in grid:
-        for e in row:
-            if not e.is_digit() or int(e) > elements:
-                print ("Invalid element: " + e)
-                return False
-    return True
-
-
-def puzzle_from_fd(fd):
-    line = fd.readline().rstrip()
-    grid = []
-    if line.isdigit():
-        size = int(line)
-    else:
-        print ("First line of file " + fd.name + " needs to be puzzle size")
-        return None, None
-    line = fd.readline()
-    while line:
-        line = line.partition('#')[0].rstrip()
-        grid.append(line.split())
-        print ("------ " + line)
-        line = fd.readline()
-    if valid_data(size, grid):
-        print ("valid data")
-        #return size, grid
-    print (str(grid))
-    return None, None
+    return inv_count

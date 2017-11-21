@@ -1,4 +1,5 @@
 import create
+from data_from_fd import puzzle_from_fd
 
 
 class Data(object):
@@ -9,4 +10,4 @@ class Data(object):
             self.size = int(size)
             self.puzzle = create.generate_new(self.size)
         elif fd:
-            self.size, self.puzzle = create.puzzle_from_fd(fd)
+            self.size, self.puzzle = puzzle_from_fd(fd)
