@@ -14,9 +14,16 @@ class Data(object):
 
 class Node(object):
 
-    def __init__(self, data, ):
+    def __init__(self, data):
         self.data = data
 
-
     def gen_new(self):
-        # generates list of new Nodes
+        out = []
+        new = []
+        temp = shift_right()
+        if temp:
+            new.append(temp)
+
+        for n in new:
+            out.append(Node(n))
+        return out

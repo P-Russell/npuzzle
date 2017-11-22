@@ -26,7 +26,6 @@ def valid_data(size, grid):
             if not e.isdigit() or int(e) > elements:
                 print ("Invalid element: " + e)
                 return False
-    print (str((flatten_array(grid))))
     if not is_solvable(flatten_array(grid), size):
         print ("puzzle not solvable")
         return False
@@ -56,6 +55,5 @@ def puzzle_from_fd(fd):
             grid.append(line.split())
         line = fd.readline()
     if valid_data(size, grid):
-        print (str(grid))
         return size, grid
     return None, None

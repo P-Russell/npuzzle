@@ -22,17 +22,15 @@ def generate_new(size):
     random.shuffle(new)
     while not is_solvable(new, size):
         random.shuffle(new)
-    return shape(new)
+    return shape(new, size)
 
 
 def is_solvable(array, p_size):
     inv = inversion(array)
-    print ('inversion = ' + str(inv))
     if p_size % 2 != 0:
         return inv % 2 == 0
     else:
         b_pos = blank_pos_from_bot(array, p_size)
-        print ('b_pos = ' + str(b_pos))
         if b_pos % 2 == 0 and inv % 2 != 0:
             return True
         elif b_pos % 2 != 0 and inv % 2 == 0:

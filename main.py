@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 
 
-from data import Data
+from classes import *
 import sys
-
+from shift import *
+from solve import solve
 
 def main():
     if len(sys.argv) == 2:
@@ -18,8 +19,11 @@ def main():
             else:
                 print ( "usage: main.py [path to puzzle] OR [number for size of "
                         "puzzle. number + 1 must be perfect square]")
+        if data.puzzle:
+            solve(data)
     else:
         print ("usage: main.py [path to puzzle] OR [number for size of puzzle. number + 1 must be perfect square]")
+
 
 
 if __name__ == '__main__':
