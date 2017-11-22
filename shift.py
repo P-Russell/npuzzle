@@ -1,3 +1,9 @@
+def print_list(l):
+    if l:
+        for row in l:
+            print (row)
+
+
 def right_shift(grid):
     y = 0
     for row in grid:
@@ -6,7 +12,8 @@ def right_shift(grid):
             break
         y += 1
     try:
-        new = grid.copy()
+        print ('for right shift 0 position y = ' + str(y) + ' x = ' + str(x))
+        new = grid[:]
         temp = new[y][x + 1]
         new[y][x + 1] = '0'
         new[y][x] = temp
@@ -16,7 +23,6 @@ def right_shift(grid):
 
 
 def left_shift(grid):
-    new = []
     y = 0
     for row in grid:
         if '0' in row:
@@ -24,7 +30,7 @@ def left_shift(grid):
             break
         y += 1
     try:
-        new = grid
+        new = grid[:]
         temp = new[y][x - 1]
         new[y][x - 1] = '0'
         new[y][x] = temp
@@ -34,7 +40,6 @@ def left_shift(grid):
 
 
 def up_shift(grid):
-    new = []
     y = 0
     for row in grid:
         if '0' in row:
@@ -42,9 +47,9 @@ def up_shift(grid):
             break
         y += 1
     try:
-        new = grid
-        temp = new[y - 1][x]
-        new[y - 1][x] = '0'
+        new = grid[:]
+        temp = new[y + 1][x]
+        new[y + 1][x] = '0'
         new[y][x] = temp
         return new
     except IndexError:
@@ -52,7 +57,6 @@ def up_shift(grid):
 
 
 def down_shift(grid):
-    new = []
     y = 0
     for row in grid:
         if '0' in row:
@@ -60,9 +64,9 @@ def down_shift(grid):
             break
         y += 1
     try:
-        new = grid
-        temp = new[y + 1][x]
-        new[y + 1][x] = '0'
+        new = grid[:]
+        temp = new[y - 1][x]
+        new[y - 1][x] = '0'
         new[y][x] = temp
         return new
     except IndexError:
