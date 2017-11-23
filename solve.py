@@ -34,4 +34,4 @@ def solve(data):
 
     print ("Original")
     print_list(test)
-    l = list_nodes(test)
+    l = expand_node(test)

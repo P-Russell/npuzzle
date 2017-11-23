@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 
-
 from classes import *
 import sys
-from shift import print_list
 from solve import solve
 
 
@@ -15,16 +13,14 @@ def main():
             data = Data(fd=fd)
             fd.close()
         except OSError:
-            if sys.argv[1].isdigit():
+            if sys.argv[1].isdigit() and int(sys.argv[1]) > 1:
                 data = Data(sys.argv[1])
             else:
-                print ( "usage: main.py [path to puzzle] OR [number for size of "
-                        "puzzle. number + 1 must be perfect square]")
+                print ("usage: main.py [path to puzzle] OR [size of puzzle to be generated > 1]")
         if data and data.puzzle:
             solve(data)
     else:
-        print ("usage: main.py [path to puzzle] OR [number for size of puzzle. "
-               "number + 1 must be perfect square]")
+        print ("usage: main.py [path to puzzle] OR [size of puzzle to be generated > 1]")
 
 
 if __name__ == '__main__':
