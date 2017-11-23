@@ -1,39 +1,47 @@
+from copy import deepcopy
+
+
 def print_list(l):
     if l:
+        print ('------------------------------')
         for row in l:
-            print (row)
+            for e in row:
+                print(str(e), end='\t')
+            print()
+        print ('------------------------------')
 
 
 def right_shift(grid):
     y = 0
+    x = 0
     for row in grid:
-        if '0' in row:
-            x = row.index('0')
+        if 0 in row:
+            x = row.index(0)
             break
         y += 1
     try:
-        print ('for right shift 0 position y = ' + str(y) + ' x = ' + str(x))
-        new = grid[:]
-        temp = new[y][x + 1]
-        new[y][x + 1] = '0'
-        new[y][x] = temp
-        return new
+        if x > 0:
+            new = deepcopy(grid)
+            new[y][x] = new[y][x - 1]
+            new[y][x - 1] = 0
+            return new
+        return None
     except IndexError:
         return None
 
 
 def left_shift(grid):
     y = 0
+    x = 0
     for row in grid:
-        if '0' in row:
-            x = row.index('0')
+        if 0 in row:
+            x = row.index(0)
             break
         y += 1
     try:
-        new = grid[:]
-        temp = new[y][x - 1]
-        new[y][x - 1] = '0'
-        new[y][x] = temp
+        new = deepcopy(grid)
+        new[y][x] = new[y][x + 1]
+        new[y][x + 1] = 0
         return new
     except IndexError:
         return None
@@ -41,16 +49,16 @@ def left_shift(grid):
 
 def up_shift(grid):
     y = 0
+    x = 0
     for row in grid:
-        if '0' in row:
-            x = row.index('0')
+        if 0 in row:
+            x = row.index(0)
             break
         y += 1
     try:
-        new = grid[:]
-        temp = new[y + 1][x]
-        new[y + 1][x] = '0'
-        new[y][x] = temp
+        new = deepcopy(grid)
+        new[y][x] = new[y + 1][x]
+        new[y + 1][x] = 0
         return new
     except IndexError:
         return None
@@ -58,16 +66,18 @@ def up_shift(grid):
 
 def down_shift(grid):
     y = 0
+    x = 0
     for row in grid:
-        if '0' in row:
-            x = row.index('0')
+        if 0 in row:
+            x = row.index(0)
             break
         y += 1
     try:
-        new = grid[:]
-        temp = new[y - 1][x]
-        new[y - 1][x] = '0'
-        new[y][x] = temp
-        return new
+        if y > 0:
+            new = deepcopy(grid)
+            new[y][x] = new[y - 1][x]
+            new[y - 1][x] = 0
+            return new
+        return None
     except IndexError:
         return None
