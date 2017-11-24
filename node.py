@@ -21,13 +21,19 @@ def expand_node(grid):
 def get_xy(value, matrix):
     y = 0
     for row in matrix:
-        x = 0
-        for e in row:
-            if e == value:
-                return x, y
-            x += 1
+        if value in row:
+            return row.index(value), y
         y += 1
 
+# def get_xy(value, matrix):
+#     y = 0
+#     for row in matrix:
+#         x = 0
+#         for e in row:
+#             if e == value:
+#                 return x, y
+#             x += 1
+#         y += 1
 
 def man_dist(grid, goal):
     h = 0
