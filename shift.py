@@ -3,12 +3,12 @@ from copy import deepcopy
 
 def print_list(l):
     if l:
-        print ('------------------------------')
+        print('------------------------------')
         for row in l:
             for e in row:
-                print(str(e), end='\t')
+                print(e, end='\t')
             print()
-        print ('------------------------------')
+        print('------------------------------')
 
 
 def right_shift(grid):
