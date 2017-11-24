@@ -28,9 +28,9 @@ def valid_data(size, grid):
             if e > elements:
                 print ("Invalid element: " + str(e))
                 return False
-    if not is_solvable(flatten_array(grid), size):
-        print ("puzzle not solvable")
-        return False
+    #if not is_solvable(flatten_array(grid), size):
+    #    print ("puzzle not solvable")
+    #    return False
     return True
 
 

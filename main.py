@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from classes import *
+from data_class import *
 import sys
 from solve import solve
 

@@ -32,3 +32,5 @@ def inversion(array):
             j += 1
         i += 1
     return inv_count
+
+
