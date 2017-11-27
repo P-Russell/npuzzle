@@ -2,7 +2,7 @@
 
 from data_class import *
 import sys
-from solve import solve
+from solve import a_star
 
 
 def main():
@@ -16,11 +16,11 @@ def main():
             if sys.argv[1].isdigit() and int(sys.argv[1]) > 1:
                 data = Data(sys.argv[1])
             else:
-                print ("usage: main.py [path to puzzle] OR [size of puzzle to be generated > 1]")
+                print("usage: main.py [path to puzzle] OR [size of puzzle to be generated > 1]")
         if data and data.puzzle:
-            solve(data)
+            a_star(data)
     else:
-        print ("usage: main.py [path to puzzle] OR [size of puzzle to be generated > 1]")
+        print("usage: main.py [path to puzzle] OR [size of puzzle to be generated > 1]")
 
 
 if __name__ == '__main__':

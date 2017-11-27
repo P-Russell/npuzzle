@@ -1,20 +1,68 @@
 from node import Node
 from shift import print_list
 
+class Open(object):
 
-def solve(data):
-    start = Node(data.puzzle)
-    print("Start")
-    print_list(start.data)
+    def __init__(self, goal):
+        self.nodes = []
+        self.goal = goal
+        self.max_held = 0
+        self.total = 0
+
+    def add(self, new):
+        if type(new) == list:
+            for node in new:
+                self.nodes.append(node)
+                self.total += 1
+        else:
+            self.nodes.append(new)
+            self.total += 1
+        # sorts list so smalled h is last
+        self.nodes.sort(key=lambda x: x.f, reverse=True)
+        if self.max_held < len(self.nodes):
+            self.max_held = len(self.nodes)
+
+    def lowest_f(self):
+        if self.nodes:
+            return self.nodes.pop()
+        return None
+
+    def get_node(self, grid):
+        for node in self.nodes:
+            if node.data == grid:
+                return node
+        return None
+
+def path_to_solution(node):
+    path = []
+    cur = node
+    while cur != None:
+        path.append(cur)
+        cur = cur.parent
+    path.reverse()
+    for e in path:
+        print_list(e.data)
+
+def a_star(data):
+    start = Node(data.puzzle, None, data.goal)
     end = data.goal
-    print('End')
-    print_list(end)
-    h = start.man_h(end)
-    print("h = ", h)
-    open = []
     closed = []
-    open = start.expand()
-    # for N in open:
-    #     print(N.h)
-    #     N.man_h(N.data)
-    #     print(N.h)
+    open = Open(end)
+    open.add(start)
+    while (open.nodes):
+        process = open.lowest_f()
+        if process.data == end:
+            return path_to_solution(process)
+        closed.append(process.data)
+        expanded = process.expand(end)
+        for node in expanded:
+            actual_node = open.get_node(node.data)
+            if node.data not in closed and actual_node == None:
+                open.add(node)
+            elif actual_node:
+                if node.g < actual_node.g:
+                    actual_node.g = node.g
+                    actual_node.f = node.f
+                    actual_node.parent = node.parent
+    print('No possible solution')
+

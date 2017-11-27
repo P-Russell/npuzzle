@@ -1,20 +1,20 @@
 from shift import *
 
 
-def expand_node(grid):
+def expand_node(grid, parent, goal):
     nodes = []
     tmp = right_shift(grid)
     if tmp:
-        nodes.append(Node(tmp))
+        nodes.append(Node(tmp, parent, goal))
     tmp = left_shift(grid)
     if tmp:
-        nodes.append(Node(tmp))
+        nodes.append(Node(tmp, parent, goal))
     tmp = up_shift(grid)
     if tmp:
-        nodes.append(Node(tmp))
+        nodes.append(Node(tmp, parent, goal))
     tmp = down_shift(grid)
     if tmp:
-        nodes.append(Node(tmp))
+        nodes.append(Node(tmp, parent, goal))
     return nodes
 
 
@@ -25,15 +25,6 @@ def get_xy(value, matrix):
             return row.index(value), y
         y += 1
 
-# def get_xy(value, matrix):
-#     y = 0
-#     for row in matrix:
-#         x = 0
-#         for e in row:
-#             if e == value:
-#                 return x, y
-#             x += 1
-#         y += 1
 
 def man_dist(grid, goal):
     h = 0
@@ -53,14 +44,15 @@ def man_dist(grid, goal):
 
 class Node(object):
 
-    h = 999
-
-    def __init__(self, data):
+    def __init__(self, data, parent, goal):
         self.data = data
-
-    def man_h(self, goal):
+        self.parent = parent
+        if parent:
+            self.g = parent.g + 1
+        else:
+            self.g = 0
         self.h = man_dist(self.data, goal)
-        return self.h
+        self.f = self.g + self.h
 
-    def expand(self):
-        return expand_node(self.data)
+    def expand(self, goal):
+        return expand_node(self.data, self, goal)
