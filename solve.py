@@ -1,6 +1,7 @@
 from node import Node
 from shift import print_list
 
+
 class Open(object):
 
     def __init__(self, goal):
@@ -11,13 +12,8 @@ class Open(object):
         self.total = 0
 
     def add(self, new):
-        if type(new) == list:
-            for node in new:
-                self.nodes.append(node)
-                self.total += 1
-        else:
-            self.nodes.append(new)
-            self.total += 1
+        self.nodes.append(new)
+        self.total += 1
         # sorts list so smalled h is last
         self.nodes.sort(key=lambda x: x.f, reverse=True)
         length = len(self.nodes)
@@ -39,7 +35,7 @@ class Open(object):
 def path_to_solution(node):
     path = []
     cur = node
-    while cur != None:
+    while cur:
         path.append(cur)
         cur = cur.parent
     path.reverse()
@@ -56,6 +52,7 @@ def a_star(data):
     while open.nodes:
         process = open.lowest_f()
         if process.data == end:
+            print('total moves = ', process.g)
             return path_to_solution(process)
         closed.append(process.data)
         expanded = process.expand(end)
