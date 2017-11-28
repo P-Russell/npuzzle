@@ -6,6 +6,7 @@ class Open(object):
     def __init__(self, goal):
         self.nodes = []
         self.goal = goal
+        self.current = 0
         self.max_held = 0
         self.total = 0
 
@@ -19,8 +20,9 @@ class Open(object):
             self.total += 1
         # sorts list so smalled h is last
         self.nodes.sort(key=lambda x: x.f, reverse=True)
-        if self.max_held < len(self.nodes):
-            self.max_held = len(self.nodes)
+        length = len(self.nodes)
+        if self.max_held < length:
+            self.max_held = length
 
     def lowest_f(self):
         if self.nodes:
@@ -33,6 +35,7 @@ class Open(object):
                 return node
         return None
 
+
 def path_to_solution(node):
     path = []
     cur = node
@@ -43,13 +46,14 @@ def path_to_solution(node):
     for e in path:
         print_list(e.data)
 
+
 def a_star(data):
     start = Node(data.puzzle, None, data.goal)
     end = data.goal
     closed = []
     open = Open(end)
     open.add(start)
-    while (open.nodes):
+    while open.nodes:
         process = open.lowest_f()
         if process.data == end:
             return path_to_solution(process)

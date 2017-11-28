@@ -3,9 +3,10 @@
 from data_class import *
 import sys
 from solve import a_star
-
+import time
 
 def main():
+    start_time = time.time()
     data = None
     if len(sys.argv) == 2:
         try:
@@ -21,6 +22,7 @@ def main():
             a_star(data)
     else:
         print("usage: main.py [path to puzzle] OR [size of puzzle to be generated > 1]")
+    print("--- %s seconds ---" % (time.time() - start_time))
 
 
 if __name__ == '__main__':
