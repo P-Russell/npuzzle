@@ -52,8 +52,14 @@ def a_star(data):
     while open.nodes:
         process = open.lowest_f()
         if process.data == end:
-            print('total moves = ', process.g)
-            return path_to_solution(process)
+            path_to_solution(process)
+            print('Total number of states ever selected in the "opened" set (complexity in time) ', open.total)
+            print('Maximum number of states ever represented in memory at the same '
+                  'time during the search (complexity in size) ', open.max_held + len(closed))
+            print('Maximum nodes held in open list ', open.max_held)
+            print('Number of moves required to transition from the initial state to the final '
+                  'state, according to the search', process.g)
+            return
         closed.append(process.data)
         expanded = process.expand(end)
         for node in expanded:

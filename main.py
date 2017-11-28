@@ -22,7 +22,7 @@ def main():
             a_star(data)
     else:
         print("usage: main.py [path to puzzle] OR [size of puzzle to be generated > 1]")
-    print("--- %s seconds ---" % (time.time() - start_time))
+    print("Total runtime %s seconds" % (time.time() - start_time))
 
 
 if __name__ == '__main__':
