@@ -15,7 +15,7 @@ class Open(object):
         self.nodes.append(new)
         self.total += 1
         # sorts list so smalled h is last
-        self.nodes.sort(key=lambda x: x.h, reverse=True) #f = heuristic + cost
+        self.nodes.sort(key=lambda x: x.f, reverse=True)
         length = len(self.nodes)
         if self.max_held < length:
             self.max_held = length

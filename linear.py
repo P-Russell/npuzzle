@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+from shift import print_list
+
 
 def get_xy(value, matrix):
     y = 0
@@ -36,8 +38,14 @@ def linear_conflict(grid, goal):
     return row_con, col_con
 
 
-def cal_conflicts(rows):
-    pass
+def cal_conflicts(rows, size):
+    i = 0
+    grid = []
+    while i < size:
+        h = list(filter(lambda x: x[1] == i, rows))
+        grid.append(h)
+    print_list(grid)
+
 
 def main():
     goal = [
@@ -47,14 +55,14 @@ def main():
     ]
 
     test = [
-        [1, 3, 2],
-        [7, 0, 4],
-        [8, 5, 6]
+        [1, 2, 3],
+        [8, 0, 4],
+        [7, 6, 5]
     ]
-
+    size = len(test)
     conflicts_rows, conflicts_columns = linear_conflict(test, goal)
     print(conflicts_rows)
-   # h = cal_conflicts_rows(conflicts_rows)
+    h = cal_conflicts(conflicts_rows, size)
     print(conflicts_columns)
 
 
