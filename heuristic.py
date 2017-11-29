@@ -31,5 +31,3 @@ def ham_dist(grid, goal):
             x += 1
         y += 1
     return h
-
-

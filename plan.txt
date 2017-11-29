@@ -45,3 +45,4 @@ https://heuristicswiki.wikispaces.com/Linear+Conflict
 
 todo Manage user select heuristic
 todo Determine if a grid is solvable
+todo Code and test linear conflict heuristic
