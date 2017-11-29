@@ -15,7 +15,7 @@ class Open(object):
         self.nodes.append(new)
         self.total += 1
         # sorts list so smalled h is last
-        self.nodes.sort(key=lambda x: x.f, reverse=True)
+        self.nodes.sort(key=lambda x: x.h, reverse=True) #f = heuristic + cost
         length = len(self.nodes)
         if self.max_held < length:
             self.max_held = length
@@ -30,6 +30,19 @@ class Open(object):
             if node.data == grid:
                 return node
         return None
+
+    # def get_node(self, grid):
+    #     node = list(filter(lambda x: x.data == grid, self.nodes))
+    #     if node:
+    #         return node[0]
+    #     return None
+
+    # def get_node(self, grid):
+    #     try:
+    #         index = [x.data for x in self.nodes].index(grid)
+    #         return self.nodes[index]
+    #     except ValueError:
+    #         return None
 
 
 def path_to_solution(node):
@@ -59,7 +72,7 @@ def a_star(data):
             print('Maximum nodes held in open list ', open.max_held)
             print('Number of moves required to transition from the initial state to the final '
                   'state, according to the search', process.g)
-            return
+            return 0
         closed.append(process.data)
         expanded = process.expand(end)
         for node in expanded:
