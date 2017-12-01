@@ -44,5 +44,6 @@ https://algorithmsinsight.wordpress.com/graph-theory-2/a-star-in-general/impleme
 https://heuristicswiki.wikispaces.com/Linear+Conflict
 
 todo Manage user select heuristic
-todo Determine if a grid is solvable
+todo Determine if a grid is solvable.
 todo Code and test linear conflict heuristic
+todo Optomise sort function in Open

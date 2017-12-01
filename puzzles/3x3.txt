@@ -1,6 +1,4 @@
-#comment1
 3
-3 2 6 #another comment$
+3 2 6
 1 4 0
-#comment
-7 8 5
+8 7 5
