@@ -10,17 +10,19 @@ class Open(object):
         self.current = 0
         self.max_held = 0
         self.total = 0
+        self.selected = 0
 
     def add(self, new):
         self.nodes.append(new)
         self.total += 1
-        # sorts list so smalled h is last
+        # sorts list so smalled f is last
         self.nodes.sort(key=lambda x: x.f, reverse=True)
         length = len(self.nodes)
         if self.max_held < length:
             self.max_held = length
 
     def lowest_f(self):
+        self.selected += 1
         if self.nodes:
             return self.nodes.pop()
         return None
@@ -30,19 +32,6 @@ class Open(object):
             if node.data == grid:
                 return node
         return None
-
-    # def get_node(self, grid):
-    #     node = list(filter(lambda x: x.data == grid, self.nodes))
-    #     if node:
-    #         return node[0]
-    #     return None
-
-    # def get_node(self, grid):
-    #     try:
-    #         index = [x.data for x in self.nodes].index(grid)
-    #         return self.nodes[index]
-    #     except ValueError:
-    #         return None
 
 
 def path_to_solution(node):
@@ -57,7 +46,7 @@ def path_to_solution(node):
 
 
 def a_star(data):
-    start = Node(data.puzzle, None, data.goal)
+    start = Node(data.puzzle, None, data.goal, data.heuristic)
     end = data.goal
     closed = []
     open = Open(end)
@@ -66,7 +55,13 @@ def a_star(data):
         process = open.lowest_f()
         if process.data == end:
             path_to_solution(process)
-            print('Total number of states ever selected in the "opened" set (complexity in time) ', open.total)
+            if data.heuristic == 1:
+                print('Using Manhattan Distance Heuristic')
+            elif data.heuristic == 2:
+                print('Using Hamming Distance Heuristic')
+            elif data.heuristic == 3:
+                print('Using Linear Conflict + Manhattan Distance Heuristics')
+            print('Total number of states ever selected in the "opened" set (complexity in time) ', open.selected)
             print('Maximum number of states ever represented in memory at the same '
                   'time during the search (complexity in size) ', open.max_held + len(closed))
             print('Maximum nodes held in open list ', open.max_held)

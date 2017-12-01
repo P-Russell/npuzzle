@@ -35,7 +35,7 @@ class Data(object):
                 counter += 1
         return snail
 
-    def __init__(self, size=0, fd=0):
+    def __init__(self, size=0, fd=0, heuristic=1):
         if size:
             self.size = int(size)
             self.puzzle = create_new.generate_new(self.size)
@@ -44,3 +44,5 @@ class Data(object):
 
         if self.size:
             self.goal = self.gen_snail(self.size)
+
+        self.heuristic = heuristic
