@@ -25,6 +25,7 @@ class Node(object):
     def __init__(self, data, parent, goal, heuristic):
         self.data = data
         self.parent = parent
+        self.h = heuristic
         self.heuristic = heuristic
         if parent:
             self.g = parent.g + 1
@@ -39,4 +40,5 @@ class Node(object):
         self.f = self.g + self.h
 
     def expand(self, goal):
-        return expand_node(self.data, self, goal, self.heuristic)
+        return expand_node(self.data, self, goal, self.h)
+        #return expand_node(self.data, self, goal, self.heuristic)
