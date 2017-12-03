@@ -1,5 +1,5 @@
 import random
-from is_solvable import is_solvable
+from solver import is_solvable
 
 
 def shape(a, size):

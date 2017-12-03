@@ -10,7 +10,7 @@ def main():
     start_time = time.time()
     data = None
     if len(sys.argv) == 3:
-            if sys.argv[2].isdigit and int(sys.argv[2]) >= 1  and int(sys.argv[2]) <= 3:
+            if sys.argv[2].isdigit() and int(sys.argv[2]) >= 1  and int(sys.argv[2]) <= 3:
                 heuristic = int(sys.argv[2])
                 try:
                     fd = open(sys.argv[1], 'r')

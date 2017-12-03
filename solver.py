@@ -1,7 +1,5 @@
-#!/usr/bin/env python3
 import math
 from snail_gen import gen_snail
-import random
 
 
 def flatten_array(l):
@@ -30,10 +28,10 @@ def is_solvable(array, p_size):
     else:
         b_pos = blank_pos_from_bot(array, p_size)
         if b_pos % 2 == 0 and inv % 2 != 0:
-            return True
+            return False
         elif b_pos % 2 != 0 and inv % 2 == 0:
-            return True
-    return False
+            return False
+    return True
 
 
 def blank_pos_from_bot(array, p_size):
@@ -45,7 +43,6 @@ def blank_pos_from_bot(array, p_size):
 def inversion(array, diction):
     length = len(array)
     converted = []
-
     for e in array:
         converted.append(diction[e])
     inv_count = 0
@@ -54,13 +51,7 @@ def inversion(array, diction):
         j = i + 1
         while j < length:
             if converted[i] > converted[j] and diction[0] != converted[i] and diction[0] != converted[j]:
-                print('inversion found ', converted[i], converted[j])
                 inv_count += 1
             j += 1
         i += 1
-    print('converted ', converted)
     return inv_count
-
-
-
-

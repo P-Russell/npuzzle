@@ -1,4 +1,4 @@
-from is_solvable import is_solvable
+from solver import is_solvable
 
 
 def flatten_array(l):
@@ -28,9 +28,9 @@ def valid_data(size, grid):
             if e > elements:
                 print ("Invalid element: " + str(e))
                 return False
-    #if not is_solvable(flatten_array(grid), size):
-    #    print ("puzzle not solvable")
-    #    return False
+    if not is_solvable(flatten_array(grid), size):
+        print ("puzzle not solvable")
+        return False
     return True
 
 
@@ -43,7 +43,11 @@ def data_in_line(s):
 def int_array(char_array):
     output = []
     for row in char_array:
-        output.append([int(x) for x in row])
+        try:
+            output.append([int(x) for x in row])
+        except ValueError:
+            print('syntax error')
+            return None
     return output
 
 
@@ -64,6 +68,7 @@ def puzzle_from_fd(fd):
             grid.append(line.split())
         line = fd.readline()
     grid = int_array(grid)
-    if valid_data(size, grid):
-        return size, grid
+    if grid:
+        if valid_data(size, grid):
+            return size, grid
     return None, None

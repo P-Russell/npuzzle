@@ -64,7 +64,7 @@ def a_star(data):
                 print('Using Linear Conflict + Manhattan Distance Heuristics')
             print('Total number of states ever selected in the "opened" set (complexity in time) ', open.selected)
             print('Maximum number of states ever represented in memory at the same '
-                  'time during the search (complexity in size) ', open.max_held + closed_total)
+                  'time during the search (complexity in size) ', len(open.nodes) + closed_total)
             print('Maximum nodes held in open list ', open.max_held)
             print('Total nodes added to closed list ', closed_total)
             print('Number of moves required to transition from the initial state to the final '

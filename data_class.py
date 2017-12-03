@@ -10,7 +10,7 @@ class Data(object):
             self.size = int(size)
             self.puzzle = create_new.generate_new(self.size)
         elif fd:
-            self.size, self.puzzle = puzzle_from_fd(fd, self.goal)
+            self.size, self.puzzle = puzzle_from_fd(fd)
 
         if self.size:
             self.goal = gen_snail(self.size)
